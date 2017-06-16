@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="style.css">
+
+<header>
+  <a href="/">
+    <h1 class="site-title">Item List</h1>
+  </a>
+  <nav class="navbar">
+    <ul class="navlist">
+      <li class="navitem navitem-left">
+        <button type="button" {{#if isHome}}class="active"{{/if}} id="home-button"><i class="fa fa-home"></i> Home</button>
+      </li>
+      <li class="navitem navitem-left">
+        <button type="button" {{#if isList}}class="active"{{/if}} id="list-button"><i class="fa fa-list"></i> List</button>
+      </li>
+      {{#if isList}}
+      <li class="navitem navbar-search">
+        <input type="text" id="search-input" placeholder="Search...">
+        <i class="fa fa-search search-icon"></i>
+      </li>
+      {{/if}}
+    </ul>
+  </nav>
+</header>
+
+{{#if isHome}}
+
+<main class="intro-container">
+
+  "This is your Bill website. You can add your each payment in here by creating a account."
+
+</main>
+
+{{/if}} {{#if isList}}
+
+<main class="item-container">
+
+  {{emptyList}}
+
+  {{#each item}} {{> itemCard}} {{/each}}
+
+  <button type="button" id="create-button"><i class="fa fa-plus"></i></button>
+
+</main>
+
+{{/if}} {{#if isError}}
+
+<main class="error-container">
+
+  {{error}}
+
+</main>
+
+{{/if}}
+
+<div id="modal-backdrop" class="hidden"></div>
+
+<div id="modal-create" class="hidden">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h3>Create a list</h3>
+      <button type="button" id="modal-close-create" class="modal-close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-input">
+        <label for="name">Name</label>
+        <textarea id="name"></textarea>
+      </div>
+      <div class="modal-input">
+        <label for="price">Price</label>
+        <input type="text" id="price">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="modal-cancel-create" class="modal-cancel-button">Cancel</button>
+      <button type="button" id="modal-accept-create" class="modal-accept-button">Create</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-signin" class="hidden">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h3>Sign in</h3>
+      <button type="button" id="modal-close-signin" class="modal-close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-input">
+        <label for="signin-username">Username</label>
+        <input type="text" id="signin-username">
+      </div>
+      <div class="modal-input">
+        <label for="signin-password">Password</label>
+        <input type="password" id="signin-password">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="modal-submit-signin" class="modal-accept-button">Sign-in</button>
+    </div>
+  </div>
+</div>
+
+<div id="modal-signup" class="hidden">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h3>Sign up</h3>
+      <button type="button" id="modal-close-signup" class="modal-close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-input">
+        <label for="signup-username">Username</label>
+        <input type="text" id="signup-username">
+      </div>
+      <div class="modal-input">
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="modal-submit-signup" class="modal-accept-button">Sign-up</button>
+    </div>
+  </div>
+</div>
+
+<script src="index.js"></script>
